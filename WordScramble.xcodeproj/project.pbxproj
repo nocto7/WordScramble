@@ -14,6 +14,7 @@
 		479995C923606BCB00BB8AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479995C823606BCB00BB8AEF /* Assets.xcassets */; };
 		479995CC23606BCB00BB8AEF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479995CB23606BCB00BB8AEF /* Preview Assets.xcassets */; };
 		479995CF23606BCB00BB8AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 479995CD23606BCB00BB8AEF /* LaunchScreen.storyboard */; };
+		479995D723606E7100BB8AEF /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 479995D623606E7100BB8AEF /* start.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		479995CB23606BCB00BB8AEF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		479995CE23606BCB00BB8AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		479995D023606BCB00BB8AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		479995D623606E7100BB8AEF /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				479995CD23606BCB00BB8AEF /* LaunchScreen.storyboard */,
 				479995D023606BCB00BB8AEF /* Info.plist */,
 				479995C323606BC400BB8AEF /* WordScramble.xcdatamodeld */,
+				479995D623606E7100BB8AEF /* start.txt */,
 				479995CA23606BCB00BB8AEF /* Preview Content */,
 			);
 			path = WordScramble;
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479995CF23606BCB00BB8AEF /* LaunchScreen.storyboard in Resources */,
+				479995D723606E7100BB8AEF /* start.txt in Resources */,
 				479995CC23606BCB00BB8AEF /* Preview Assets.xcassets in Resources */,
 				479995C923606BCB00BB8AEF /* Assets.xcassets in Resources */,
 			);

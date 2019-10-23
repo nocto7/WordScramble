@@ -17,10 +17,20 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var results = [String]()
+    
+    var score: Int {
+        var score = 0
+        for word in usedWords {
+            score += word.count
+        }
+        return score
+    }
+    
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 TextField("Enter your word:", text: $newWord, onCommit: addNewWord)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
@@ -30,12 +40,23 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                Text("Score: \(score)")
+                    .font(.headline)
+                Spacer()
+                Text("Previously on WordScramble")
+                    .font(.caption)
+                List(results, id: \.self) {
+                    Text( $0)
+                }
             }
             .navigationBarTitle(rootWord)
             .onAppear(perform: startGame)
             .alert(isPresented: $showingError) {
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
             }
+            .navigationBarItems(trailing: Button(action: startGame) {
+                Text("New Word?")
+            })
         }
     }
     
@@ -60,6 +81,10 @@ struct ContentView: View {
     }
     
     func startGame() {
+        if rootWord != "" {
+            results.insert("\(rootWord): \(score)", at: 0)
+            usedWords = [String]()
+        }
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 let allWords = startWords.components(separatedBy: "\n")
@@ -67,7 +92,7 @@ struct ContentView: View {
                 return
             }
         }
-        fatalError("Something went wrong loading the words to play the game")
+        fatalError("Something went wrong loading the words to play the game.")
     }
     
     func isOriginal(word: String) -> Bool {
@@ -87,6 +112,8 @@ struct ContentView: View {
     }
     
     func isReal(word: String) -> Bool {
+        if word == rootWord { return false }
+        if word.count < 3 { return false }
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspeltrange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")

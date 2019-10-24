@@ -20,11 +20,7 @@ struct ContentView: View {
     @State private var results = [String: Int]()
     
     var score: Int {
-        var score = 0
-        for word in usedWords {
-            score += word.count
-        }
-        return score
+        usedWords.map {$0.count}.reduce(0, +)
     }
     
     var topScores: [String] {

@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
-    @State private var results = [String]()
+    @State private var results = [String: Int]()
     
     var score: Int {
         var score = 0
@@ -25,6 +25,10 @@ struct ContentView: View {
             score += word.count
         }
         return score
+    }
+    
+    var topScores: [String] {
+        results.sorted(by: {$0.value > $1.value}).map {"\($0): \($1)"}
     }
     
     
@@ -45,7 +49,7 @@ struct ContentView: View {
                 Spacer()
                 Text("Previously on WordScramble")
                     .font(.caption)
-                List(results, id: \.self) {
+                List(topScores, id: \.self) {
                     Text( $0)
                 }
             }
@@ -82,8 +86,9 @@ struct ContentView: View {
     
     func startGame() {
         if rootWord != "" {
-            results.insert("\(rootWord): \(score)", at: 0)
+            results[rootWord] = score
             usedWords = [String]()
+            print("results \(results)")
         }
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL) {
